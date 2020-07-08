@@ -8,13 +8,15 @@
       <v-row class="d-flex justify-center">
         <v-col cols="12" md="4" lg="2">
           <v-text-field
+            ref="userinput"
             v-model="userInput"
             label="Letters"
-            @input="check()"
+            v-on:keypress="check"
           ></v-text-field>
         </v-col>
         <v-col cols="12" md="2" lg="1">
           <v-btn class="red" @click.prevent="startTest">Start</v-btn>
+          <v-btn class="primary" @click.prevent="resetInput">Reset</v-btn>
         </v-col>
       </v-row>
     </v-row>
@@ -29,7 +31,7 @@ export default {
     return {
       letter: '',
       userInput: '',
-      score: ''
+      score: 0
     }
   },
   computed: {
@@ -39,27 +41,33 @@ export default {
   },
   methods: {
     startTest() {
+      this.randomLetter()
+      this.$refs.userinput.focus()
+
+      setTimeout(() => {
+        console.log('your score is', this.score)
+        this.score = 0
+      }, 10000)
+    },
+    check() {
+      console.log('userinput', this.userInput)
+      console.log('letter', this.letter)
+      if (this.userInput === this.letter) {
+        this.score++
+      } else {
+        this.score--
+      }
+
+      this.randomLetter()
+      this.userInput = ''
+    },
+    randomLetter() {
       this.letter = this.letters[
         Math.floor(Math.random() * this.letters.length)
       ]
-      setTimeout(() => {
-        console.log('test complete')
-      }, 60000)
     },
-    check() {
-      // Reset the input field
+    resetInput() {
       this.userInput = ''
-
-      if (this.userInput === this.letter) {
-        this.letter = this.letters[
-          Math.floor(Math.random() * this.letters.length)
-        ]
-        this.score++
-      } else {
-        this.letter = this.letters[
-          Math.floor(Math.random() * this.letters.length)
-        ]
-      }
     }
   }
 }
