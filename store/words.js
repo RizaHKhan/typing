@@ -1,5 +1,18 @@
 export const state = () => ({
-  words: ['one', 'two', 'three', 'four', 'five'],
+  words: [
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+    'news',
+    'fifteen',
+    'ten'
+  ],
   letters: [
     'a',
     'b',

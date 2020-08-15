@@ -1,24 +1,20 @@
 <template>
-  <v-layout column justify-center align-center>
-    <h1>Header</h1>
-    <p v-for="word in words" :key="word">
-      {{ word }}
-    </p>
-    <v-text-field label="input" />
+  <v-layout column>
+    <About />
+    <h1 class="mx-auto">Choose What you want to improve today:</h1>
+    <v-btn to="/letters" class="primary white--text my-1 mx-auto"
+      >Letters</v-btn
+    >
+    <v-btn to="/words" class="primary white--text my-1 mx-auto">Words</v-btn>
   </v-layout>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import About from '@/components/About'
+
 export default {
-  data: () => ({
-    word: '',
-    letter: ''
-  }),
-  computed: {
-    ...mapGetters({
-      words: 'words/GET_WORDS'
-    })
+  components: {
+    About
   }
 }
 </script>
