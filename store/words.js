@@ -11,7 +11,21 @@ export const state = () => ({
     'nine',
     'news',
     'fifteen',
-    'ten'
+    'ten',
+    'English',
+    'Indian',
+    'hammer',
+    'axe',
+    'zoo',
+    'zoology',
+    'pepper',
+    'green',
+    'blue',
+    'pink',
+    'terrible',
+    'horrble',
+    'system',
+    'design'
   ],
   letters: [
     'a',
