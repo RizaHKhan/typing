@@ -1,7 +1,7 @@
 {
-  "name": "practice-setup",
+  "name": "typing-mastery",
   "version": "1.0.0",
-  "description": "My terrific Nuxt.js project",
+  "description": "The Premium Typing Application",
   "author": "khanr",
   "private": true,
   "scripts": {
