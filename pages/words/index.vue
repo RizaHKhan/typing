@@ -16,6 +16,10 @@
     />
     <v-row v-if="showScore">
       <v-col>
+        <h1>Score</h1>
+        <p>{{ score }}</p>
+      </v-col>
+      <v-col>
         <h1>Correct:</h1>
         <p>{{ correct }}</p>
       </v-col>
@@ -47,9 +51,12 @@ export default {
     wrongArray: [],
     correct: 0,
     correctArray: [],
-    timer: 10,
+    timer: 60,
     gameStarted: false,
-    showScore: false
+    showScore: false,
+    totalEntries: [],
+    wrongEntries: [],
+    score: 0
   }),
   computed: {
     ...mapGetters({
@@ -82,13 +89,22 @@ export default {
           word: this.shuffledWords[this.position],
           entered: this.userEntry.substring(0, this.userEntry.length - 1)
         })
+        this.wrongEntries = [...this.userEntry, this.wrongEntries]
       }
 
+      // Should this # contain the spacebar?
+      this.totalEntries = [...this.userEntry.split(''), ...this.totalEntries]
       this.position++
       this.userEntry = ''
     },
+    calculateScore() {
+      this.score =
+        (this.totalEntries.length / 5 - this.wrongArray.length) /
+        (this.timer / 60)
+    },
     stopGame() {
       this.showScore = true
+      this.calculateScore()
     }
   }
 }
