@@ -20,7 +20,7 @@ export default {
   css: [],
   plugins: [],
   buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/vuetify'],
-  modules: ['@nuxtjs/axios'],
+  modules: ['@nuxtjs/axios', '@nuxt/content'],
   axios: {},
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
