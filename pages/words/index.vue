@@ -3,12 +3,8 @@
     <h1 class="display-2 grey--text">Words</h1>
     <v-container>
       <v-row>
-        <v-col
-          v-for="(word, index) in shuffledWords"
-          :key="index"
-          :class="[index === position ? 'red' : '']"
-        >
-          <Target :target="word" />
+        <v-col v-for="(word, index) in shuffledWords" :key="index">
+          <Target :target="word" :color="index === position ? 'red' : ''" />
         </v-col>
       </v-row>
     </v-container>
@@ -22,9 +18,6 @@
       <v-col>
         <h1>Correct:</h1>
         <p>{{ correct }}</p>
-        <ul>
-          <li v-for="word in correctArray" :key="word">{{ word.word }}</li>
-        </ul>
       </v-col>
       <v-col>
         <h1>Wrong:</h1>

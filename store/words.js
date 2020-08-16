@@ -30,7 +30,11 @@ export const state = () => ({
     'thanks',
     'updated',
     'xenophone',
-    'associated'
+    'associated',
+    'dangerous',
+    'sweater',
+    'savage',
+    'rounded'
   ]
 })
 
