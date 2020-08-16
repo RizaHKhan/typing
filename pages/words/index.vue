@@ -1,36 +1,40 @@
 <template>
   <v-layout column justify-center align-center>
     <h1 class="display-2 grey--text">Words</h1>
-    <v-container>
+    <v-container v-if="!showScore">
       <v-row>
-        <v-col v-for="(word, index) in shuffledWords" :key="index">
-          <Target :target="word" :color="index === position ? 'red' : ''" />
+        <v-col cols="6" offset="3">
+          <Target
+            v-for="(word, index) in shuffledWords"
+            :key="index"
+            :target="word"
+            :color="index === position ? 'red' : ''"
+            :display="index - position > 1 || position > index ? false : true"
+          />
         </v-col>
       </v-row>
+      <v-text-field
+        v-model="userEntry"
+        :disabled="showScore"
+        label="Input"
+        @keyup.space="checkInput()"
+      />
     </v-container>
-    <v-text-field
-      v-model="userEntry"
-      :disabled="showScore"
-      label="Input"
-      @keyup.space="checkInput()"
-    />
     <v-row v-if="showScore">
+      <v-col cols="12">
+        <v-btn class="primary" @click="resetGame">Reset</v-btn>
+      </v-col>
       <v-col>
         <h1>Score</h1>
         <p>{{ score }}</p>
       </v-col>
-      <v-col>
-        <h1>Correct:</h1>
-        <p>{{ correct }}</p>
-      </v-col>
-      <v-col>
-        <h1>Wrong:</h1>
+      <v-col cols="12">
+        <h1>Words you got wrong</h1>
         <p>{{ wrong }}</p>
-        <ul>
-          <li v-for="word in wrongArray" :key="word">
-            {{ word.word }} / {{ word.entered }}
-          </li>
-        </ul>
+        <v-row v-for="word in wrongArray" :key="word">
+          <v-col cols="6">Correct: {{ word.word }}</v-col>
+          <v-col cols="6">What you typed: {{ word.entered }}</v-col>
+        </v-row>
       </v-col>
     </v-row>
   </v-layout>
@@ -105,6 +109,20 @@ export default {
     stopGame() {
       this.showScore = true
       this.calculateScore()
+    },
+    resetGame() {
+      this.userEntry = ''
+      this.position = 0
+      this.wrong = 0
+      this.wrongArray = []
+      this.correct = 0
+      this.correctArray = []
+      this.timer = 60
+      this.gameStarted = false
+      this.showScore = false
+      this.totalEntries = []
+      this.wrongEntries = []
+      this.score = 0
     }
   }
 }

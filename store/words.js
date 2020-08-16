@@ -77,7 +77,21 @@ export const state = () => ({
     'eraser',
     'greenhouse',
     'country',
-    'mouse'
+    'mouse',
+    'gamebread',
+    'talked',
+    'hydrocarbon',
+    'gradious',
+    'computer',
+    'desktop',
+    'RAM',
+    'important',
+    'trash',
+    'keyboard',
+    'inbox',
+    'pen',
+    'neurochemical',
+    'plasticisty'
   ]
 })
 

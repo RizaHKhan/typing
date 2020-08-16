@@ -1,5 +1,5 @@
 <template>
-  <v-btn :class="color">
+  <v-btn class="mx-auto" :class="color" v-if="display">
     {{ target }}
   </v-btn>
 </template>
@@ -13,6 +13,10 @@ export default {
     },
     color: {
       type: String,
+      required: true
+    },
+    display: {
+      type: Boolean,
       required: true
     }
   }

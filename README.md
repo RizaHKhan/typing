@@ -15,3 +15,4 @@ The words presented to you will constantly change to target your trouble area ( 
 1. Multi-language implementation (TBA)
 2. Better UI on test page
 3. Blog Implementation
+4. Only show part of the array of words instead of the entire array. Could do it by hiding the elements with CSS (probably the best way)
