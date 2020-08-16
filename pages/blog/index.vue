@@ -1,31 +1,25 @@
 <template>
-  <v-container>
-    <v-card
-      v-for="blog in blogs"
-      :key="blog.index"
-      class="my-4 pa-4"
-      :to="'/blog/' + blog.index"
-    >
-      <v-card-title class="pa-0">
-        <h1 class="font-weight-light">{{ blog.title }}</h1>
-      </v-card-title>
-      <v-card-content>
-        <p>{{ blog.author }}</p>
-        <p>Posted: {{ blog.createdDate }}</p>
-      </v-card-content>
-      <v-img :src="blog.image" height="300" width="300" />
-    </v-card>
-  </v-container>
+  <div>
+    <v-col v-for="doc in docs" :key="doc.slug">
+      <h1>{{ doc.title }}</h1>
+      <p>{{ doc.description }}</p>
+      <p>{{ doc.body }}</p>
+      <pre>{{ doc }}</pre>
+    </v-col>
+  </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
-  computed: {
-    ...mapGetters({
-      blogs: 'blog/GET_BLOGS'
-    })
+  async asyncData({ $content, params }) {
+    const docs = await $content('blog')
+      .sortBy('title')
+      .fetch()
+
+    console.log('docs', docs)
+    return { docs }
   }
 }
 </script>
+
+<style scoped></style>
