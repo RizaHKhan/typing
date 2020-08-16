@@ -1,22 +1,8 @@
-# practice-setup
+# TypingMastery
 
-> My terrific Nuxt.js project
+Welcome to `Typing Mastery`. There are many typing apps, but not all of them are looking to better your typing skills.
 
-## Build Setup
+At `Typeing Master` we provide our users with meta data that will help them target the trouble areas in their typing.
 
-```bash
-# install dependencies
-$ yarn install
-
-# serve with hot reload at localhost:3000
-$ yarn dev
-
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
-$ yarn generate
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+Do you have issues with specific letters on the keyboard? Do you want to target those words?
+The words presented to you will constantly change to target your trouble area ( or new areas that arise ) and help you over come them with constant practice.
