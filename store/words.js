@@ -35,6 +35,5 @@ export const state = () => ({
 })
 
 export const getters = {
-  GET_WORDS: (state) => state.words,
-  GET_LETTERS: (state) => state.letters
+  GET_WORDS: (state) => state.words
 }

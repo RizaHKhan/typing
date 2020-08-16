@@ -1,15 +1,17 @@
 <template>
   <v-layout column justify-center align-center>
     <h1 class="display-2 grey--text">Words</h1>
-    <v-row>
-      <v-col
-        v-for="(word, index) in words"
-        :key="index"
-        :class="[index === position ? 'red' : '']"
-      >
-        <Target :target="word" />
-      </v-col>
-    </v-row>
+    <v-container>
+      <v-row>
+        <v-col
+          v-for="(word, index) in shuffledWords"
+          :key="index"
+          :class="[index === position ? 'red' : '']"
+        >
+          <Target :target="word" />
+        </v-col>
+      </v-row>
+    </v-container>
     <v-text-field
       v-model="userEntry"
       :disabled="showScore"
@@ -59,7 +61,11 @@ export default {
   computed: {
     ...mapGetters({
       words: 'words/GET_WORDS'
-    })
+    }),
+    shuffledWords() {
+      const newArray = [...this.words]
+      return newArray.sort(() => Math.random() - 0.5)
+    }
   },
   methods: {
     checkInput() {
@@ -72,15 +78,15 @@ export default {
       }
 
       if (
-        this.words[this.position] ===
+        this.shuffledWords[this.position] ===
         this.userEntry.substring(0, this.userEntry.length - 1)
       ) {
         this.correct++
-        this.correctArray.push({ word: this.words[this.position] })
+        this.correctArray.push({ word: this.shuffledWords[this.position] })
       } else {
         this.wrong++
         this.wrongArray.push({
-          word: this.words[this.position],
+          word: this.shuffledWords[this.position],
           entered: this.userEntry.substring(0, this.userEntry.length - 1)
         })
       }
