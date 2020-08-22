@@ -3,8 +3,7 @@
     <v-col v-for="doc in docs" :key="doc.slug">
       <h1>{{ doc.title }}</h1>
       <p>{{ doc.description }}</p>
-      <p>{{ doc.body }}</p>
-      <pre>{{ doc }}</pre>
+      <v-btn :to="'/blog/' + doc.title">Read more...</v-btn>
     </v-col>
   </div>
 </template>

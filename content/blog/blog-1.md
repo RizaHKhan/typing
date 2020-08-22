@@ -1,17 +1,18 @@
 ---
 title: blog-1
-description: a simple blog
+description: This blog is about topic blog # 1
 ---
 
-# Nuxt Content - The new way to blog
-## dolor-sit-amet
-### consectetur @amp; adipiscicing
-#### elit
-##### elit
+# Blog 1
 
 ```
-const http = require('http');
-const bodyParser = require('body-parser')
+mutaiton Observer. And Slider that goes swish!
 ```
 
+### This is another title
+lorem and some other stuff
+
+#### This is som
+
+# Omg another title
 

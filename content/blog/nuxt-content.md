@@ -10,8 +10,11 @@ description: Learn how to use @nuxt/content.
 ##### elit
 
 ```
-const http = require('http');
-const bodyParser = require('body-parser')
+let target = document.querySelectorAll('.hit-em')
+
+target.innerText = 'Lets Do it!'
+
+
 ```
 
 
