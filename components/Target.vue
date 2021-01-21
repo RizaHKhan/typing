@@ -1,5 +1,5 @@
 <template>
-  <v-btn class="mx-auto" :class="color" v-if="display">
+  <v-btn class="ma-1" :class="color" text>
     {{ target }}
   </v-btn>
 </template>

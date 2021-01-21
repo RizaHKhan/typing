@@ -2,7 +2,6 @@
   <v-layout column>
     <About />
     <h1 class="mx-auto">Choose What you want to improve today:</h1>
-    <v-btn to="/blog" class="primary white--text my-1 mx-auto">Blog</v-btn>
     <v-btn to="/words" class="primary white--text my-1 mx-auto">Words</v-btn>
   </v-layout>
 </template>

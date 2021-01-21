@@ -8,8 +8,7 @@
             v-for="(word, index) in shuffledWords"
             :key="index"
             :target="word"
-            :color="index === position ? 'red' : ''"
-            :display="index - position > 1 || position > index ? false : true"
+            :color="index === position ? 'grey' : ''"
           />
         </v-col>
       </v-row>
