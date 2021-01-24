@@ -45,7 +45,7 @@ import Target from '@/components/Target'
 
 export default {
   components: {
-    Target
+    Target,
   },
   data: () => ({
     userEntry: '',
@@ -59,16 +59,19 @@ export default {
     showScore: false,
     totalEntries: [],
     wrongEntries: [],
-    score: 0
+    score: 0,
   }),
   computed: {
     ...mapGetters({
-      words: 'words/GET_WORDS'
+      words: 'words/GET_WORDS',
     }),
     shuffledWords() {
       const newArray = [...this.words]
       return newArray.sort(() => Math.random() - 0.5)
-    }
+    },
+  },
+  mounted() {
+    console.log(this.$auth)
   },
   methods: {
     checkInput() {
@@ -90,7 +93,7 @@ export default {
         this.wrong++
         this.wrongArray.push({
           word: this.shuffledWords[this.position],
-          entered: this.userEntry.substring(0, this.userEntry.length - 1)
+          entered: this.userEntry.substring(0, this.userEntry.length - 1),
         })
         this.wrongEntries = [...this.userEntry, this.wrongEntries]
       }
@@ -122,7 +125,7 @@ export default {
       this.totalEntries = []
       this.wrongEntries = []
       this.score = 0
-    }
-  }
+    },
+  },
 }
 </script>

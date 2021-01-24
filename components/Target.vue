@@ -9,17 +9,13 @@ export default {
   props: {
     target: {
       type: String,
-      required: true
+      required: true,
     },
     color: {
       type: String,
-      required: true
+      required: true,
     },
-    display: {
-      type: Boolean,
-      required: true
-    }
-  }
+  },
 }
 </script>
 

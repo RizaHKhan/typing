@@ -11,17 +11,39 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
-      }
+        content: process.env.npm_package_description || '',
+      },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   loading: { color: '#fff' },
   css: [],
   plugins: [],
   buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/vuetify'],
-  modules: ['@nuxtjs/axios'],
-  axios: {},
+  modules: ['@nuxtjs/axios', '@nuxtjs/auth-next'],
+  axios: {
+    baseURL: process.env.API || 'http://localhost:3001/api/v1',
+  },
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/users/login',
+            method: 'POST',
+            propertyName: false,
+          },
+          user: {
+            url: '/users/login',
+            method: 'GET',
+            propertyName: 'user',
+          },
+          logout: { url: '/users/logout', method: 'post' },
+        },
+        tokenType: false,
+      },
+    },
+  },
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
@@ -34,12 +56,12 @@ export default {
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
-          success: colors.green.accent3
-        }
-      }
-    }
+          success: colors.green.accent3,
+        },
+      },
+    },
   },
   build: {
-    extend(config, ctx) {}
-  }
+    extend(config, ctx) {},
+  },
 }

@@ -6,6 +6,7 @@
         <nuxt />
       </v-container>
     </v-main>
+    <Snackbar />
     <v-footer :fixed="fixed" app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
@@ -14,10 +15,12 @@
 
 <script>
 import Header from '@/components/Header.vue'
+import Snackbar from '@/components/Snackbar.vue'
 
 export default {
   components: {
-    Header
+    Header,
+    Snackbar,
   },
   data() {
     return {
@@ -28,19 +31,19 @@ export default {
         {
           icon: 'mdi-apps',
           title: 'Welcome',
-          to: '/'
+          to: '/',
         },
         {
           icon: 'mdi-chart-bubble',
           title: 'Inspire',
-          to: '/inspire'
-        }
+          to: '/inspire',
+        },
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'Vuetify.js',
     }
-  }
+  },
 }
 </script>

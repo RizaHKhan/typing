@@ -11,7 +11,7 @@ import About from '@/components/About'
 
 export default {
   components: {
-    About
-  }
+    About,
+  },
 }
 </script>

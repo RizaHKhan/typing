@@ -91,10 +91,10 @@ export const state = () => ({
     'inbox',
     'pen',
     'neurochemical',
-    'plasticisty'
-  ]
+    'plasticisty',
+  ],
 })
 
 export const getters = {
-  GET_WORDS: (state) => state.words
+  GET_WORDS: (state) => state.words,
 }
