@@ -3,7 +3,6 @@
     <v-toolbar-title class="text-h5 font-weight-thin"
       >TypingMastery</v-toolbar-title
     >
-    {{ $auth.user._id }}
     <v-spacer></v-spacer>
     <v-btn small class="ml-2 orange" to="/words">Test</v-btn>
     <v-btn
@@ -16,7 +15,7 @@
     >
       Login
     </v-btn>
-    <v-btn v-else small class="orange ml-2">Logout</v-btn>
+    <v-btn v-else small class="orange ml-2" @click="logout">Logout</v-btn>
     <v-dialog v-model="dialog" max-width="500">
       <v-card>
         <v-tabs v-model="tab" background-color="grey darken-1" centered>
@@ -40,7 +39,6 @@
         </v-tabs-items>
       </v-card>
     </v-dialog>
-
     <v-btn small class="ml-2" text>Blog</v-btn>
   </v-toolbar>
 </template>
@@ -59,6 +57,11 @@ export default {
       dialog: false,
       tab: null,
     }
+  },
+  methods: {
+    async logout() {
+      await this.$auth.logout()
+    },
   },
 }
 </script>

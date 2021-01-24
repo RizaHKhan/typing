@@ -71,6 +71,12 @@ export default {
       try {
         const user = { email: this.email, password: this.password }
         await this.registerAction(user)
+        this.$auth.loginWith('local', {
+          data: {
+            email: this.email,
+            password: this.password,
+          },
+        })
       } catch (e) {
         console.log('there was an error')
       }

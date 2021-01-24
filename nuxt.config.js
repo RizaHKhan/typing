@@ -38,7 +38,7 @@ export default {
             method: 'GET',
             propertyName: 'user',
           },
-          logout: { url: '/users/logout', method: 'post' },
+          logout: { url: '/users/logout', method: 'POST' },
         },
         tokenType: false,
       },
