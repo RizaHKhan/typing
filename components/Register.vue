@@ -77,6 +77,7 @@ export default {
             password: this.password,
           },
         })
+        this.$emit('registered')
       } catch (e) {
         console.log('there was an error')
       }

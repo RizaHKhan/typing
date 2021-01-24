@@ -61,6 +61,7 @@ export default {
     wrongEntries: [],
     score: 0,
   }),
+  middleware: 'auth',
   computed: {
     ...mapGetters({
       words: 'words/GET_WORDS',

@@ -31,7 +31,7 @@
 export default {
   data: () => ({
     valid: true,
-    password: 'qwerty',
+    password: '',
     passwordRules: [
       (v) => !!v || 'Password is required',
       (v) =>
@@ -39,7 +39,7 @@ export default {
       (v) =>
         (v && v.length <= 50) || 'Password must be less then 50 characters',
     ],
-    email: 'khanriza@gmail.com',
+    email: '',
     emailRules: [
       (v) => !!v || 'E-mail is required',
       (v) => /.+@.+\..+/.test(v) || 'E-mail must be valid',
@@ -56,6 +56,7 @@ export default {
               password: this.password,
             },
           })
+          this.$emit('loggedIn')
         } catch (e) {
           console.log(e)
         }

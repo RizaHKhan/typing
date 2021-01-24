@@ -4,7 +4,7 @@
       >TypingMastery</v-toolbar-title
     >
     <v-spacer></v-spacer>
-    <v-btn small class="ml-2 orange" to="/words">Test</v-btn>
+    <v-btn small class="ml-2" text>Blog</v-btn>
     <v-btn
       v-if="!$auth.loggedIn"
       small
@@ -28,18 +28,17 @@
         <v-tabs-items v-model="tab">
           <v-tab-item value="tab-1">
             <v-card flat>
-              <Login />
+              <Login @loggedIn="closeDialog" />
             </v-card>
           </v-tab-item>
           <v-tab-item value="tab-2">
             <v-card flat>
-              <Register />
+              <Register @registered="closeDialog" />
             </v-card>
           </v-tab-item>
         </v-tabs-items>
       </v-card>
     </v-dialog>
-    <v-btn small class="ml-2" text>Blog</v-btn>
   </v-toolbar>
 </template>
 
@@ -61,6 +60,9 @@ export default {
   methods: {
     async logout() {
       await this.$auth.logout()
+    },
+    closeDialog() {
+      this.dialog = false
     },
   },
 }

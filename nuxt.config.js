@@ -25,6 +25,12 @@ export default {
     baseURL: process.env.API || 'http://localhost:3001/api/v1',
   },
   auth: {
+    redirect: {
+      login: '/words',
+      logout: '/',
+      callback: '/',
+      home: '/',
+    },
     strategies: {
       local: {
         endpoints: {
