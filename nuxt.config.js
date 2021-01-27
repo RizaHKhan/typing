@@ -26,9 +26,8 @@ export default {
   },
   auth: {
     redirect: {
-      login: '/words',
+      login: '/',
       logout: '/',
-      callback: '/',
       home: '/',
     },
     strategies: {

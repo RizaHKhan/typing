@@ -47,7 +47,6 @@ export default {
   }),
   methods: {
     login() {
-      console.log('got to this point')
       if (this.$refs.form.validate()) {
         try {
           this.$auth.loginWith('local', {
@@ -67,3 +66,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.home {
+  color: red;
+}
+</style>

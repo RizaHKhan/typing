@@ -1,6 +1,6 @@
 <template>
-  <v-layout column justify-center align-center>
-    <h1 class="display-2 grey--text">Words</h1>
+  <v-layout column justify-center align-center class="my-5">
+    <p class="text-h4 font-weight-light grey--text">{{ counter }}</p>
     <v-container v-if="!showScore">
       <v-row>
         <v-col cols="6" offset="3">
@@ -47,6 +47,7 @@ export default {
   components: {
     Target,
   },
+  middleware: 'auth',
   data: () => ({
     userEntry: '',
     position: 0,
@@ -54,14 +55,14 @@ export default {
     wrongArray: [],
     correct: 0,
     correctArray: [],
-    timer: 60,
+    timer: 30,
     gameStarted: false,
     showScore: false,
     totalEntries: [],
     wrongEntries: [],
+    counter: 30,
     score: 0,
   }),
-  middleware: 'auth',
   computed: {
     ...mapGetters({
       words: 'words/GET_WORDS',
@@ -71,22 +72,31 @@ export default {
       return newArray.sort(() => Math.random() - 0.5)
     },
   },
-  mounted() {
-    console.log(this.$auth)
-  },
   methods: {
     checkInput() {
       if (!this.gameStarted) {
         this.gameStarted = true
 
-        setTimeout(() => {
+        const startCountdown = setInterval(() => {
+          this.counter--
+        }, 1000)
+
+        setTimeout(async () => {
           this.stopGame()
+          clearInterval(startCountdown)
+          this.counter = 30
+          await this.$axios.post('/tests', {
+            wrongWords: this.wrongArray,
+            correctWords: this.correctArray,
+            score: this.score,
+            email: this.$auth.user.email,
+          })
         }, this.timer * 1000)
       }
 
       if (
         this.shuffledWords[this.position] ===
-        this.userEntry.substring(0, this.userEntry.length - 1)
+        this.userEntry.substring(0, this.userEntry.length - 1).trim()
       ) {
         this.correct++
         this.correctArray.push({ word: this.shuffledWords[this.position] })
@@ -94,7 +104,9 @@ export default {
         this.wrong++
         this.wrongArray.push({
           word: this.shuffledWords[this.position],
-          entered: this.userEntry.substring(0, this.userEntry.length - 1),
+          entered: this.userEntry
+            .substring(0, this.userEntry.length - 1)
+            .trim(),
         })
         this.wrongEntries = [...this.userEntry, this.wrongEntries]
       }

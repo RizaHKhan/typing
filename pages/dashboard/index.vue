@@ -17,7 +17,7 @@
             metaData.numOfTests
           }}</v-card-text>
         </v-card>
-        <v-card>
+        <v-card outlined>
           <v-card-title>Most Misspelt Words</v-card-title>
           <v-card-text
             v-for="word in wrongWordsModified"
@@ -67,5 +67,3 @@ export default {
   },
 }
 </script>
-
-<style></style>
