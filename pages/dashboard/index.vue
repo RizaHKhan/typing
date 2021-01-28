@@ -1,23 +1,31 @@
 <template>
   <v-layout wrap>
     <v-col cols="12">
+      <v-btn to="/dashboard/blog">Blog</v-btn>
+      <v-btn to="/dashboard/blog/123">Unique Blog</v-btn>
+    </v-col>
+    <v-col cols="12">
       <p class="text-h3 font-weight-light">Dashboard</p>
     </v-col>
     <v-col>
-      <v-layout wrap>
-        <v-card outlined class="ma-2">
-          <v-card-title>Average</v-card-title>
-          <v-card-text class="text-h3 white--text">{{
+      <v-layout v-if="metaData" wrap>
+        <v-card outlined class="ma-2 mb-auto">
+          <v-card-title>Your Average</v-card-title>
+          <v-card-text class="text-h3 orange--text">{{
             Math.ceil(metaData.averageScore)
           }}</v-card-text>
+          <v-card-title>Global</v-card-title>
+          <v-card-text class="text-h4 white--text">
+            {{ Math.ceil(globalAvg.average) }}
+          </v-card-text>
         </v-card>
-        <v-card outlined class="ma-2">
+        <v-card outlined class="ma-2 mb-auto">
           <v-card-title>Tests Taken</v-card-title>
           <v-card-text class="text-h3 white--text">{{
             metaData.numOfTests
           }}</v-card-text>
         </v-card>
-        <v-card outlined>
+        <v-card v-if="wrongWordsModified.length" outlined class="ma-2 mb-auto">
           <v-card-title>Most Misspelt Words</v-card-title>
           <v-card-text
             v-for="word in wrongWordsModified"
@@ -37,8 +45,8 @@ export default {
   async asyncData({ $axios }) {
     try {
       const response = await $axios.get('/tests')
-      const { metaData } = response.data
-      return { metaData }
+      const { metaData, globalAvg } = response.data
+      return { metaData, globalAvg }
     } catch (e) {
       console.log(e)
     }
@@ -49,7 +57,7 @@ export default {
         [].concat
           .apply(
             [],
-            this.metaData.wrongWords.map((i) => i.map((i) => i.word))
+            this.metaData?.wrongWords.map((i) => i.map((i) => i.word))
           )
           .reduce((acc, curr) => {
             if (typeof acc[curr] === 'undefined') {

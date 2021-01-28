@@ -43,9 +43,7 @@ export default {
       this.addMessage('Some random message')
     },
     checkForMoreMessages() {
-      console.log(this.messages[0])
       this.currentSnack = this.messages[0]
-      /* console.log(this.currentSnack) */
     },
   },
 }

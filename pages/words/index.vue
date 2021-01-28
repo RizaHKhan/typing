@@ -87,7 +87,6 @@ export default {
           this.counter = 30
           await this.$axios.post('/tests', {
             wrongWords: this.wrongArray,
-            correctWords: this.correctArray,
             score: this.score,
             email: this.$auth.user.email,
           })

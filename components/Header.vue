@@ -12,23 +12,34 @@
         <v-btn
           v-if="!$auth.loggedIn"
           small
-          class="mx-1"
-          color="primary"
-          dark
+          class="mx-1 blue lighten-1"
           @click.stop="dialog = true"
         >
           Login
         </v-btn>
-        <v-btn v-if="$auth.loggedIn" small class="success mx-1" to="/words"
-          >Tests</v-btn
+        <v-btn
+          v-if="$auth.loggedIn"
+          small
+          class="mx-1 blue lighten-1"
+          to="/words"
         >
-        <v-btn v-if="$auth.loggedIn" small to="/dashboard" class="primary"
-          >Dashboard</v-btn
+          <v-icon left>mdi-calendar</v-icon>
+
+          Tests</v-btn
         >
         <v-btn
           v-if="$auth.loggedIn"
           small
-          class="orange mx-1"
+          to="/dashboard"
+          class="green lighten-1"
+        >
+          <v-icon left>mdi-speedometer</v-icon>
+          Dashboard</v-btn
+        >
+        <v-btn
+          v-if="$auth.loggedIn"
+          small
+          class="mx-1 yellow lighten-1 black--text"
           @click="$auth.logout()"
         >
           <v-icon dark>mdi-power</v-icon>
