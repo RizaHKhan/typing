@@ -12,10 +12,23 @@ The words presented to you will constantly change to target your trouble area ( 
 [ ((all typed entries) / 5) - Uncorrected Errors ] / Time (min)
 
 ## TODO
+
 1. Multi-language implementation (TBA)
 2. Better UI on test page
 3. Blog Implementation
 4. Only show part of the array of words instead of the entire array. Could do it by hiding the elements with CSS (probably the best way)
-  a. This is partially done, however, while typing the words moving causes some 'pain'. So probably try not to move the words, or find a better way of showing limited number of words. (Probably copy other such sites).
-  b.
+   a. This is partially done, however, while typing the words moving causes some 'pain'. So probably try not to move the words, or find a better way of showing limited number of words. (Probably copy other such sites).
+   b.
 5.
+
+## Notification
+
+Use this to output a snackbar
+
+```
+this.$notifier.showMessage({
+  message: 'Invalid Form Inputs',
+  color: 'black',
+})
+
+```
