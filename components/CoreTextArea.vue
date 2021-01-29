@@ -3,6 +3,7 @@
     v-model="val"
     :label="label"
     @input="$emit('input', val)"
+    height="100%"
   ></v-textarea>
 </template>
 

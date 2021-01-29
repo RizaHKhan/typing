@@ -1,11 +1,6 @@
 <template>
   <v-layout wrap>
-    <v-col v-if="$auth.user.admin" cols="12">
-      <v-btn to="/dashboard/blog" class="success">
-        <v-icon left>mdi-plus</v-icon>
-        Add a blog</v-btn
-      >
-    </v-col>
+    <v-col v-if="$auth.user.admin" cols="12"> </v-col>
     <v-col cols="12">
       <p class="text-h3 font-weight-light">Dashboard</p>
     </v-col>
@@ -43,6 +38,12 @@
           max-width="1000px"
         >
           <v-card-title>Your Blogs</v-card-title>
+          <v-card-actions class="d-flex justify-end">
+            <v-btn to="/dashboard/blog" class="success">
+              <v-icon left>mdi-plus</v-icon>
+              Add a blog</v-btn
+            >
+          </v-card-actions>
           <v-card-text
             v-for="(blog, i) in allBlogTitles"
             :key="blog._id"
