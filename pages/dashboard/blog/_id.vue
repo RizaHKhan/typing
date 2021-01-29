@@ -1,20 +1,39 @@
 <template>
-  <div>
-    <h1>ID:{{ blog.title }}</h1>
-    <p>{{ blog.description }}</p>
-  </div>
+  <v-container>
+    <CoreInput v-model="blog.title" />
+    <CoreSwitch v-model="blog.published" />
+    <CoreTextArea v-model="blog.description" />
+    <v-row>
+      <v-col class="d-flex justify-end">
+        <v-btn class="success" @click="updateBlog">Update</v-btn>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
+import CoreInput from '@/components/CoreInput.vue'
+import CoreTextArea from '@/components/CoreTextArea.vue'
+import CoreSwitch from '@/components/CoreSwitch.vue'
+
 export default {
-  data() {
-    return {
-      blog: {
-        title: 'My Title',
-        description:
-          'Elit officiis hic ullam ipsum consequuntur Nesciunt dolorem magni eos deleniti vero corporis. Commodi nam quasi accusantium corrupti sed Quidem.0',
-      },
+  components: { CoreInput, CoreTextArea, CoreSwitch },
+  async asyncData({ params, $axios }) {
+    try {
+      const response = await $axios.get(`/blogs/${params.id}`)
+      const blog = response.data
+      return { blog }
+    } catch (e) {
+      console.log(e)
     }
+  },
+  methods: {
+    async updateBlog() {
+      try {
+        await this.$axios.put(`/blogs/${this.blog._id}`, this.blog)
+        this.$router.push('/dashboard/')
+      } catch (e) {}
+    },
   },
 }
 </script>

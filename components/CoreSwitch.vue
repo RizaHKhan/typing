@@ -16,7 +16,7 @@ export default {
     },
     label: {
       type: String,
-      default: 'Published',
+      default: '',
     },
   },
   data() {
