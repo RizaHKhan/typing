@@ -21,6 +21,7 @@
           >
         </v-layout>
       </v-sheet>
+      <v-btn @click="addMessage">Add Message</v-btn>
     </v-col>
   </v-layout>
 </template>
@@ -40,6 +41,19 @@ export default {
     } catch (e) {
       return { error: e }
     }
+  },
+  data() {
+    return {
+      counter: 0,
+    }
+  },
+  methods: {
+    addMessage() {
+      this.$notifier.showMessage({
+        message: `Hello #${this.counter++}`,
+        color: 'black',
+      })
+    },
   },
 }
 </script>

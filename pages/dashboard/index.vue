@@ -39,7 +39,7 @@
         >
           <v-card-title>Your Blogs</v-card-title>
           <v-card-actions class="d-flex justify-end">
-            <v-btn to="/dashboard/blog" class="success">
+            <v-btn to="/dashboard/blog" class="green lighten-1">
               <v-icon left>mdi-plus</v-icon>
               Add a blog</v-btn
             >
@@ -50,10 +50,10 @@
             class="d-flex justify-space-between text-body font-weight-light align-center"
             >{{ blog.title }}
             <v-card-actions>
-              <v-btn :to="`/dashboard/blog/${blog._id}`">
+              <v-btn :to="`/dashboard/blog/${blog._id}`" depressed>
                 <v-icon>mdi-tools</v-icon>
               </v-btn>
-              <v-btn @click="deleteBlogById(blog._id, i)">
+              <v-btn depressed @click="deleteBlogById(blog._id, i)">
                 <v-icon class="red--text">mdi-delete</v-icon>
               </v-btn>
               <CoreSwitch

@@ -1,16 +1,11 @@
 export const state = () => ({
-  messages: ['message one', 'message two', 'message three'],
+  message: '',
+  color: '',
 })
 
 export const mutations = {
-  ADD_SNACKBAR_MESSAGE(state, message) {
-    state.messages.push(message)
+  ADD_SNACKBAR_MESSAGE(state, payload) {
+    state.message = payload.message
+    state.color = payload.color
   },
-  REMOVE_FIRST_MESSAGE(state) {
-    state.messages.shift()
-  },
-}
-
-export const getters = {
-  GET_SNACKBAR_MESSAGES: (state) => [...state.messages],
 }
