@@ -37,32 +37,49 @@
           class="mb-auto ma-2"
           max-width="1000px"
         >
-          <v-card-title>Your Blogs</v-card-title>
-          <v-card-actions class="d-flex justify-end">
-            <v-btn to="/dashboard/blog" class="green lighten-1">
+          <v-card-title
+            >Your Blogs
+
+            <v-btn to="/dashboard/blog" class="green lighten-1 ml-auto">
               <v-icon left>mdi-plus</v-icon>
               Add a blog</v-btn
             >
-          </v-card-actions>
-          <v-card-text
-            v-for="(blog, i) in allBlogTitles"
-            :key="blog._id"
-            class="d-flex justify-space-between text-body font-weight-light align-center"
-            >{{ blog.title }}
-            <v-card-actions>
-              <v-btn :to="`/dashboard/blog/${blog._id}`" depressed>
-                <v-icon>mdi-tools</v-icon>
-              </v-btn>
-              <v-btn depressed @click="deleteBlogById(blog._id, i)">
-                <v-icon class="red--text">mdi-delete</v-icon>
-              </v-btn>
-              <CoreSwitch
-                v-model="blog.published"
-                class="ml-3"
-                @input="changePublishState($event, blog._id)"
-              />
-            </v-card-actions>
-          </v-card-text>
+          </v-card-title>
+
+          <v-simple-table>
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th class="text-left">Name</th>
+                  <th class="text-center">Edit</th>
+                  <th class="text-center">Delete</th>
+                  <th class="text-center">Published</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(blog, i) in allBlogTitles" :key="i">
+                  <td>{{ blog.title }}</td>
+                  <td>
+                    <v-btn :to="`/dashboard/blog/${blog._id}`" depressed>
+                      <v-icon>mdi-tools</v-icon>
+                    </v-btn>
+                  </td>
+                  <td>
+                    <v-btn depressed @click="deleteBlogById(blog._id, i)">
+                      <v-icon class="red--text">mdi-delete</v-icon>
+                    </v-btn>
+                  </td>
+                  <td>
+                    <CoreSwitch
+                      v-model="blog.published"
+                      class="ml-3"
+                      @input="changePublishState($event, blog._id)"
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
         </v-card>
       </v-layout>
     </v-col>
@@ -75,7 +92,7 @@ import CoreSwitch from '@/components/CoreSwitch.vue'
 export default {
   components: { CoreSwitch },
   middleware: 'auth',
-  async asyncData({ $axios }) {
+  async asyncData({ $axios, $notifier, redirect }) {
     try {
       const testsResponse = await $axios.get('/tests')
       const blogsResponse = await $axios.get('/blogs')
@@ -84,7 +101,11 @@ export default {
       const { allBlogTitles } = blogsResponse.data
       return { metaData, globalAvg, allBlogTitles }
     } catch (e) {
-      console.log(e)
+      $notifier.showMessage({
+        message: 'Unable to load content',
+        color: 'black',
+      })
+      redirect('/')
     }
   },
   computed: {

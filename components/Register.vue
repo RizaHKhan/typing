@@ -71,7 +71,7 @@ export default {
       try {
         const user = { email: this.email, password: this.password }
         await this.registerAction(user)
-        this.$auth.loginWith('local', {
+        await this.$auth.loginWith('local', {
           data: {
             email: this.email,
             password: this.password,
@@ -79,7 +79,10 @@ export default {
         })
         this.$emit('registered')
       } catch (e) {
-        console.log('there was an error')
+        this.$notifier.showMessage({
+          message: e,
+          color: 'black',
+        })
       }
     },
   },
