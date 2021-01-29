@@ -46,10 +46,10 @@ export default {
     ],
   }),
   methods: {
-    login() {
+    async login() {
       if (this.$refs.form.validate()) {
         try {
-          this.$auth.loginWith('local', {
+          await this.$auth.loginWith('local', {
             data: {
               email: this.email,
               password: this.password,
@@ -57,10 +57,16 @@ export default {
           })
           this.$emit('loggedIn')
         } catch (e) {
-          console.log(e)
+          this.$notifier.showMessage({
+            message: e,
+            color: 'black',
+          })
         }
       } else {
-        console.log('you have errors')
+        this.$notifier.showMessage({
+          message: 'Invalid Form Inputs',
+          color: 'black',
+        })
       }
     },
   },

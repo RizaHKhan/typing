@@ -21,7 +21,6 @@
           >
         </v-layout>
       </v-sheet>
-      <v-btn @click="addMessage">Add Message</v-btn>
     </v-col>
   </v-layout>
 </template>
@@ -33,27 +32,22 @@ export default {
   components: {
     About,
   },
-  async asyncData({ $axios }) {
+  async asyncData({ $axios, $notifier }) {
     try {
       const response = await $axios.get('/blogs')
       const { allBlogTitles } = response.data
       return { blogs: allBlogTitles.filter((blog) => blog.published) }
     } catch (e) {
-      return { error: e }
+      return $notifier.showMessage({
+        message: e,
+        color: 'black',
+      })
     }
   },
   data() {
     return {
       counter: 0,
     }
-  },
-  methods: {
-    addMessage() {
-      this.$notifier.showMessage({
-        message: `Hello #${this.counter++}`,
-        color: 'black',
-      })
-    },
   },
 }
 </script>
